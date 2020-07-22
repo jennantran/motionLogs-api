@@ -4,7 +4,7 @@ CREATE TABLE save_logs(
     set INTEGER NOT NULL,
     rep INTEGER NOT NULL,
     weight INTEGER NOT NULL,
-    modified TIMESTAMPTZ DEFAULT now() NOT NULL,
     user_id INTEGER 
-        REFERENCES log_users(id) ON DELETE CASCADE NOT NULL
+        REFERENCES log_users(id) ON DELETE CASCADE NOT NULL,
+    modified TIMESTAMPTZ DEFAULT now() NOT NULL
 );
