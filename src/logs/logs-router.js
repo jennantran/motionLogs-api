@@ -5,8 +5,8 @@ const jsonParser = express.json();
 const xss = require('xss');
 const path = require('path');
 
-const serializeLog = Log => ({
-    id: log_id.id,
+const serializeLog = log => ({
+    id: log.id,
     name: xss(log.wout_name),
     set: log.set,
     rep: log.rep,
