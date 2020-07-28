@@ -15,18 +15,12 @@ logsRouter
             })
             .catch(next)
     })
+    // .post(jsonParser, (req,res,next) => {
+    //     const {}
+    // })
 
 logsRouter
     .route('/:log_id')
-    .get((req, res, next) => { 
-        const knexInstance = req.app.get('db')
-        logsService.getAllLogs(knexInstance)
-            .then(logs => {
-                res.json(logs)
-            })
-            .catch(next)
-    })
-
 
 
 module.exports = logsRouter; 
