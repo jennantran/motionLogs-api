@@ -22,7 +22,7 @@ const logsService = {
     },
     deleteLog(knex, id){
         return knex('save_logs')
-        .where({id})
+        .where( { id })
         .delete()
     },
 }
