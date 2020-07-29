@@ -34,11 +34,12 @@ logsRouter
                     error: { message: `Missing '${key}' in request body` }
         })
         logsService.insertLog(req.app.get('db'), newLog)
-        .then(() => {
+        .then((newLog) => {
             res.status(201)
             .json(serializeLog(newLog));
             })
             .catch(next);
+            console.log(res);
     });
 logsRouter
     .route('/:log_id')
