@@ -2,11 +2,13 @@ const path = require('path');
 const express = require('express');
 const xss = require('xss');
 const UsersService = require('./users-service');
-const { hash } = require('bcryptjs');
-
 const usersRouter = express.Router();
 const jsonParser = express.json();
 
+const serializeUser = user => ({
+  username: xss(user.username),
+  password: xss(user.password)
+});
 
 usersRouter
   .post('/', jsonParser, (req, res, next) => {

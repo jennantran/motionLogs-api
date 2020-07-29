@@ -8,7 +8,7 @@ const UsersService = {
             .from('log_users')
     },
     hasUserWithUserName(db, username) {
-        return db('tour_users')
+        return db('log_users')
           .where({ username })
           .first()
           .then(user => !!user);

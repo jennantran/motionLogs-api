@@ -41,9 +41,9 @@ logsRouter
             console.log(res);
     });
 logsRouter
-    .route('/:log_id')
+    .route('/:id')
     .all((req,res,next) => {
-        logsService.getById(req.app.get('db'), req.params.log_id)
+        logsService.getById(req.app.get('db'), req.params.id)
             .then(log => {
                 if(!log){
                     return res.status(404).json({

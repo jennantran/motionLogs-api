@@ -20,9 +20,9 @@ const logsService = {
             .where('id',id)
             .first()
     },
-    deleteLog(knex, log_id){
+    deleteLog(knex, id){
         return knex('save_logs')
-        .where( { log_id })
+        .where({id})
         .delete()
     },
 }

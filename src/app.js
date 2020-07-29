@@ -7,6 +7,7 @@ const { NODE_ENV } = require('./config');
 const logsRouter = require('./logs/logs-router');
 const usersRouter = require('./users/users-router');
 const errorHandler = require('./error-handler');
+const authRouter = require('./auth/auth-router');
 const app = express()
 
 app.get('/', (req, res) => {
@@ -27,6 +28,7 @@ app.use(helmet());
 
 app.use('/api/logs', logsRouter);
 app.use('/api/signup', usersRouter);
+app.use('/api/auth', authRouter);
 
 app.use(errorHandler);
 
