@@ -5,7 +5,7 @@ const jsonParser = express.json();
 const xss = require('xss');
 
 const serializeLog = log => ({
-    id: log.id,
+    id: log.log_id,
     name: xss(log.wout_name),
     set: log.set,
     rep: log.rep,
@@ -58,7 +58,7 @@ logsRouter
     .delete((req, res, next) => {
         LogsService.deleteLog(
             req.app.get('db'),
-            req.params.log_id,
+            req.params.id,
         )
             .then(numRowsAffected => {
             res.status(204).end();
