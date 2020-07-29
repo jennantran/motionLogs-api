@@ -3,7 +3,6 @@ const logsService = require('./logs-service');
 const logsRouter = express.Router();
 const jsonParser = express.json();
 const xss = require('xss');
-const path = require('path');
 
 const serializeLog = log => ({
     id: log.id,
@@ -20,7 +19,7 @@ logsRouter
         const knexInstance = req.app.get('db')
         logsService.getAllLogs(knexInstance)
             .then(logs => {
-                res.json(logs)
+                res.json(logs.map(serializeLog))
             })
             .catch(next)
     })      
@@ -43,6 +42,29 @@ logsRouter
     });
 logsRouter
     .route('/:log_id')
+    .all((req,res,next) => {
+        logsService.getById(req.app.get('db'), req.params.log_id)
+            .then(log => {
+                if(!log){
+                    return res.status(404).json({
+                        error: { message: `Log doesn't exist` }
+                    })
+                }
+                res.log = log
+                next()
+            })
+            .catch(next)
+    })
+    .delete((req, res, next) => {
+        LogsService.deleteLog(
+            req.app.get('db'),
+            req.params.log_id,
+        )
+            .then(numRowsAffected => {
+            res.status(204).end();
+            })
+            .catch(next);
+    })
 
 
 module.exports = logsRouter; 
