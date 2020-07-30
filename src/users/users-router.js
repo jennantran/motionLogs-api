@@ -5,9 +5,9 @@ const UsersService = require('./users-service');
 const usersRouter = express.Router();
 const jsonParser = express.json();
 
-const serializeUser = user => ({
-  username: xss(user.username),
-  password: xss(user.password)
+const serializeUser = username => ({
+  username: xss(username.username),
+  password: xss(username.password)
 });
 
 usersRouter
@@ -32,11 +32,11 @@ usersRouter
               req.app.get('db'),
               newUser
             )
-              .then(user => {
+              .then(username => {
                 res
                   .status(201)
-                  .location(path.posix.join(req.originalUrl, `/${user.id}`))
-                  .json(UsersService.serializeUser(user));
+                  .location(path.posix.join(req.originalUrl, `/${username.id}`))
+                  .json(UsersService.serializeUser(username));
               })
           })
       })

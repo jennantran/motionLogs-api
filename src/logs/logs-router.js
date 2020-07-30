@@ -34,31 +34,31 @@ logsRouter
         })
         logsService.insertLog(req.app.get('db'), newLog)
         .then((newLog) => {
+            console.log('newlog',newLog);
             res.status(201)
             .json(serializeLog(newLog));
             })
             .catch(next);
-            console.log(res);
     });
 logsRouter
     .route('/:log_id')
-    .all((req,res,next) => {
-        logsService.getById(req.app.get('db'), req.params.log_id)
-            .then(log => {
-                if(!log){
-                    return res.status(404).json({
-                        error: { message: `Log doesn't exist` }
-                    })
-                }
-                res.log = log
-                next()
-            })
-            .catch(next)
-    })
+    // .all((req,res,next) => {
+    //     logsService.getById(req.app.get('db'), req.params.log_id)
+    //         .then(log => {
+    //             if(!log){
+    //                 return res.status(404).json({
+    //                     error: { message: `Log doesn't exist` }
+    //                 })
+    //             }
+    //             res.log = log
+    //             next()
+    //         })
+    //         .catch(next)
+    // })
     .delete((req, res, next) => {
-        LogsService.deleteLog(
+        logsService.deleteLog(
             req.app.get('db'),
-            req.params.id,
+            req.params.log_id,
         )
             .then(numRowsAffected => {
             res.status(204).end();
