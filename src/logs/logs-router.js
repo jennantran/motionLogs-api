@@ -15,14 +15,24 @@ const serializeLog = log => ({
 });
 logsRouter
     .route('/')
-    .get((req, res, next) => { 
-        const knexInstance = req.app.get('db')
-        logsService.getAllLogs(knexInstance)
-            .then(logs => {
-                res.json(logs.map(serializeLog))
-            })
-            .catch(next)
-    })      
+    
+    // .get((req, res, next) => { 
+    //     const knexInstance = req.app.get('db')
+    //     logsService.getAllLogs(knexInstance)
+    //         .then(logs => {
+    //             res.json(logs.map(serializeLog))
+    //         })
+    //         .catch(next)
+    // })     
+    .get((req, res, next) => {
+        console.log('user id',req.headers.user_id);
+        logsService.getLogsById(req.app.get('db'), req.headers.user_id)
+          .then(logs => {
+              console.log('logs',logs);
+            res.json(logs.map(serializeLog));
+          })
+          .catch(next);
+    })
     .post(jsonParser, (req, res, next) => {
         const { wout_name, set, rep, weight, user_id, date_added} = req.body
         const newLog = { wout_name, set, rep, weight, user_id, date_added }

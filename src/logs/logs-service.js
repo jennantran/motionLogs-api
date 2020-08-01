@@ -13,12 +13,11 @@ const logsService = {
                 return rows[0]
         })
     },
-    getById(knex,log_id){
+    getLogsById(knex,user_id){
         return knex
             .from('save_logs')
             .select('*')
-            .where('id',log_id)
-            .first()
+            .where('user_id',user_id)
     },
     deleteLog(knex, log_id){
         return knex('save_logs')

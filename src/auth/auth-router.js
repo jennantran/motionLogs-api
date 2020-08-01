@@ -28,7 +28,7 @@ const jsonBodyParser = express.json();
         .then(compareMatch => {
             if (!compareMatch)
             return res.status(400).json({
-                error: 'sh username or password ' + ' ' +  loginUser.username + ' ' +  loginUser.password + dbUser.username + dbUser.password,
+                error: 'sh username or password ' + ' loginReq: ' +  loginUser.username + ' passReq: ' +  loginUser.password +' dbUser: ' + dbUser.username + ' dbPass: ' + dbUser.password,
             })
             
            const sub = dbUser.username;
