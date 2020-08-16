@@ -1,5 +1,3 @@
-# motionLogs-api
-
 Motion Logs Server
 ================
 * * *
