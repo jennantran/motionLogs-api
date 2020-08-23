@@ -49,16 +49,16 @@ POST api/users
 Screenshots
 -----------
 Homepage:
-![homepage]()
+![Homepage](image/motion-homepage.png)
 
 Logs Page:
-![FavoritesPage]()
+![LogsPage](image/motion-logs.png)
 
 Workout Page:
-![Search Page]()
+![SearchPage](image/motion-calorie.png)
 
-Results: 
-![Results]()
+Add Log Form:
+![AddLog](image/motion-addlog.png)
 * * *
 
 Technologies Used
