@@ -15,20 +15,10 @@ const serializeLog = log => ({
 });
 logsRouter
     .route('/')
-    
-    // .get((req, res, next) => { 
-    //     const knexInstance = req.app.get('db')
-    //     logsService.getAllLogs(knexInstance)
-    //         .then(logs => {
-    //             res.json(logs.map(serializeLog))
-    //         })
-    //         .catch(next)
-    // })     
+      
     .get((req, res, next) => {
-        console.log('user id',req.headers.user_id);
         logsService.getLogsById(req.app.get('db'), req.headers.user_id)
           .then(logs => {
-              console.log('logs',logs);
             res.json(logs.map(serializeLog));
           })
           .catch(next);
@@ -44,7 +34,6 @@ logsRouter
         })
         logsService.insertLog(req.app.get('db'), newLog)
         .then((newLog) => {
-            console.log('newlog',newLog);
             res.status(201)
             .json(serializeLog(newLog));
             })
@@ -52,19 +41,6 @@ logsRouter
     });
 logsRouter
     .route('/:log_id')
-    // .all((req,res,next) => {
-    //     logsService.getById(req.app.get('db'), req.params.log_id)
-    //         .then(log => {
-    //             if(!log){
-    //                 return res.status(404).json({
-    //                     error: { message: `Log doesn't exist` }
-    //                 })
-    //             }
-    //             res.log = log
-    //             next()
-    //         })
-    //         .catch(next)
-    // })
     .delete((req, res, next) => {
         logsService.deleteLog(
             req.app.get('db'),
