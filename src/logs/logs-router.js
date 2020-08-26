@@ -29,7 +29,7 @@ logsRouter
         for (const [key , value] of Object.entries(newLog))
             if(value == null)
                 return res.status(400).json({
-                    error: { message: `Missing '${key}' in request body` };
+                    error: { message: `Missing '${key}' in request body` }
         })
         logsService.insertLog(req.app.get('db'), newLog)
         .then((newLog) => {
