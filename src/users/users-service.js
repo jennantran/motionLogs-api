@@ -30,7 +30,7 @@ const UsersService = {
             .returning('*')
             .then(rows => {
                 return rows[0];
-        })
+        });
     },
 
       hashPassword(password) {
@@ -40,8 +40,7 @@ const UsersService = {
         return {
           id: user.id,
           username: xss(user.username),
-
-        }
+        };
     },
 }
 

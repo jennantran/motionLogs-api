@@ -12,7 +12,7 @@ const jsonBodyParser = express.json();
         if (value == null)
           return res.status(400).json({
             error: `Missing '${key}' in request body`
-    })
+    });
 
     AuthService.getUserWithUserName(
        req.app.get('db'),
@@ -22,13 +22,13 @@ const jsonBodyParser = express.json();
          if (!dbUser)
          return res.status(400).json({
              error: 'blah username or password',
-           })
+        });
         return AuthService.comparePasswords(loginUser.password, dbUser.password)
         .then(compareMatch => {
             if (!compareMatch)
             return res.status(400).json({
                 error: 'sh username or password ' + ' loginReq: ' +  loginUser.username + ' passReq: ' +  loginUser.password +' dbUser: ' + dbUser.username + ' dbPass: ' + dbUser.password,
-            })
+          });
             
            const sub = dbUser.username;
            const payload = { user_id: dbUser.id };

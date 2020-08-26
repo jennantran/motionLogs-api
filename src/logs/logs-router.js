@@ -37,7 +37,7 @@ logsRouter
             .json(serializeLog(newLog));
             })
             .catch(next);
-    });
+    })
 logsRouter
     .route('/:log_id')
     .delete((req, res, next) => {
