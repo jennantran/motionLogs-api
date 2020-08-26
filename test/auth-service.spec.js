@@ -18,7 +18,7 @@ describe('Auth Endpoints', function() {
             username: 'Annie',
             password: 'password2'
         }
-    ]
+    ];
   
     before('make knex instance', () => {
       db = knex({
@@ -26,7 +26,7 @@ describe('Auth Endpoints', function() {
         connection: process.env.TEST_DATABASE_URL,
       });
       app.set('db', db);
-    });
+    })
   
     after('disconnect from db', () => db.destroy());
     before('clean the tables before ', () => db.raw('TRUNCATE TABLE log_users RESTART IDENTITY CASCADE'));
@@ -38,10 +38,10 @@ describe('Auth Endpoints', function() {
             return db
                 .into('log_users')
                 .insert(testUser)
-            })
+        })
     
         it(`get user`, () => {
-        return AuthService.getUserWithUserName(db,'Luke')
+         return AuthService.getUserWithUserName(db,'Luke')
         .then(actual => {
         expect(actual).to.eql({
             id: 1,

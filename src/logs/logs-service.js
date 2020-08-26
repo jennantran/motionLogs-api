@@ -2,7 +2,7 @@ const logsService = {
     getAllLogs(knex){
         return knex
             .select('*')
-            .from('save_logs');
+            .from('save_logs')
     },
     insertLog(knex, newLog){
         return knex 
@@ -21,8 +21,8 @@ const logsService = {
     },
     deleteLog(knex, log_id){
         return knex('save_logs')
-        .where( { log_id })
-        .delete()
+            .where( { log_id })
+            .delete()
     },
 }
 

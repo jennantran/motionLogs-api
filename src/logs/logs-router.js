@@ -15,7 +15,6 @@ const serializeLog = log => ({
 });
 logsRouter
     .route('/')
-      
     .get((req, res, next) => {
         logsService.getLogsById(req.app.get('db'), req.headers.user_id)
           .then(logs => {
@@ -24,13 +23,13 @@ logsRouter
           .catch(next);
     })
     .post(jsonParser, (req, res, next) => {
-        const { wout_name, set, rep, weight, user_id, date_added} = req.body
-        const newLog = { wout_name, set, rep, weight, user_id, date_added }
+        const { wout_name, set, rep, weight, user_id, date_added} = req.body;
+        const newLog = { wout_name, set, rep, weight, user_id, date_added };
 
         for (const [key , value] of Object.entries(newLog))
             if(value == null)
                 return res.status(400).json({
-                    error: { message: `Missing '${key}' in request body` }
+                    error: { message: `Missing '${key}' in request body` };
         })
         logsService.insertLog(req.app.get('db'), newLog)
         .then((newLog) => {
@@ -46,11 +45,10 @@ logsRouter
             req.app.get('db'),
             req.params.log_id,
         )
-            .then(numRowsAffected => {
-            res.status(204).end();
-            })
-            .catch(next);
-    })
-
+        .then(numRowsAffected => {
+        res.status(204).end();
+        })
+        .catch(next);
+})
 
 module.exports = logsRouter; 

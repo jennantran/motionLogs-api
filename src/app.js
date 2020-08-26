@@ -8,18 +8,18 @@ const logsRouter = require('./logs/logs-router');
 const usersRouter = require('./users/users-router');
 const errorHandler = require('./error-handler');
 const authRouter = require('./auth/auth-router');
-const app = express()
+const app = express();
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
-     })
+})
 
 const morganOption = (NODE_ENV === 'production')
 ? 'tiny'
 : 'common';
 
 app.get('/logs', (req, res, next) => {
-    res.send('All logs')
+    res.send('All logs');
 })
 
 app.use(morgan(morganOption));
@@ -33,4 +33,4 @@ app.use('/api/auth', authRouter);
 app.use(errorHandler);
 
     
-module.exports = app
+module.exports = app;

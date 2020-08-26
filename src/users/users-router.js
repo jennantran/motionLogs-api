@@ -7,7 +7,7 @@ const jsonParser = express.json();
 
 const serializeUser = username => ({
   username: xss(username.username),
-  password: xss(username.password)
+  password: xss(username.password),
 });
 
 usersRouter
@@ -27,7 +27,7 @@ usersRouter
             const newUser = {
               username: username.value,
               password: hashedPassword,
-            }
+            };
             return UsersService.insertUser(
               req.app.get('db'),
               newUser

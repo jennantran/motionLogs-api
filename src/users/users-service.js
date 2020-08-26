@@ -12,7 +12,7 @@ const UsersService = {
           .where({ username })
           .first()
           .then(user => !!user);
-      },
+    },
     getById(knex,id){
         return knex
             .from('log_users')
@@ -30,7 +30,7 @@ const UsersService = {
             .returning('*')
             .then(rows => {
                 return rows[0];
-            })
+        })
     },
 
       hashPassword(password) {
@@ -41,8 +41,8 @@ const UsersService = {
           id: user.id,
           username: xss(user.username),
 
-        };
-      },
+        }
+    },
 }
 
 module.exports = UsersService;
