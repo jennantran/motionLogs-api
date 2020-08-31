@@ -21,13 +21,13 @@ const jsonBodyParser = express.json();
        .then(dbUser => {
          if (!dbUser)
          return res.status(400).json({
-             error: 'blah username or password',
+             error: 'Invalid password. Please login with valid credentials to access logs.'
         });
         return AuthService.comparePasswords(loginUser.password, dbUser.password)
         .then(compareMatch => {
             if (!compareMatch)
             return res.status(400).json({
-                error: 'Invalid username or password. Please login with valid credentials to access logs.'
+                error: 'Invalid password. Please login with valid credentials to access logs.'
             })
             
            const sub = dbUser.username;
