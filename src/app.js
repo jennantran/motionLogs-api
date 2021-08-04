@@ -9,18 +9,23 @@ const usersRouter = require('./users/users-router');
 const errorHandler = require('./error-handler');
 const authRouter = require('./auth/auth-router');
 const app = express();
+const cookieParser = require('cookie-parser');
+
+
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send('Hello, world!')
+    res.cookie('myCookie','express').send('Cookie set');
+    console.log('myCookie', req.cookies)
 })
 
 const morganOption = (NODE_ENV === 'production')
 ? 'tiny'
 : 'common';
 
-app.get('/logs', (req, res, next) => {
-    res.send('All logs');
-})
+// app.get('/logs', (req, res, next) => {
+//     res.send('All logs');
+// })
 
 app.use(morgan(morganOption));
 app.use(cors())
@@ -32,5 +37,4 @@ app.use('/api/auth', authRouter);
 
 app.use(errorHandler);
 
-    
 module.exports = app;
