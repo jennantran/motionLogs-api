@@ -10,16 +10,17 @@ const errorHandler = require('./error-handler');
 const authRouter = require('./auth/auth-router');
 const app = express();
 const cookieParser = require('cookie-parser');
+var timeout = require('connect-timeout')
 
 
+app.use(timeout('5s'))
 app.use(cookieParser());
 app.use(cors())
 
 app.get('/', (req, res) => {
     res.cookie('myCookie','express').send('Cookie set');
-    console.log('myCookie', req.cookies)
 })
-
+  
 const morganOption = (NODE_ENV === 'production')
 ? 'tiny'
 : 'common';
