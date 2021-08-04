@@ -13,6 +13,7 @@ const cookieParser = require('cookie-parser');
 
 
 app.use(cookieParser());
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.cookie('myCookie','express').send('Cookie set');
@@ -34,7 +35,6 @@ app.use(function(req, res, next) {
   });
 
 app.use(morgan(morganOption));
-app.use(cors())
 app.use(helmet());
 
 app.use('/api/logs', logsRouter);
