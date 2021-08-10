@@ -6,7 +6,7 @@ const { PORT, DATABASE_URL } = require('./config');
     client: 'pg',
     connection: DATABASE_URL,
     ssl: {
-      rejectUnauthorized: true,
+      rejectUnauthorized: false,
     },
   });
 
