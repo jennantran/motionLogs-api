@@ -42,6 +42,6 @@ app.use('/api/logs', logsRouter);
 app.use('/api/signup', usersRouter);
 app.use('/api/auth', authRouter);
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
 module.exports = app;
