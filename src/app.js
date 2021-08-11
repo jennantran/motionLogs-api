@@ -15,7 +15,9 @@ var timeout = require('connect-timeout')
 
 app.use(timeout('5s'))
 app.use(cookieParser());
+app.use(haltOnTimedout)
 app.use(cors())
+app.use(haltOnTimedout)
 
 app.get('/', (req, res) => {
     res.cookie('myCookie','express').send('Cookie set');
@@ -34,14 +36,20 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
+  app.use(haltOnTimedout)
 
 app.use(morgan(morganOption));
+app.use(haltOnTimedout)
 app.use(helmet());
+app.use(haltOnTimedout)
 
 app.use('/api/logs', logsRouter);
 app.use('/api/signup', usersRouter);
 app.use('/api/auth', authRouter);
 
 // app.use(errorHandler);
+function haltOnTimedout (req, res, next) {
+    if (!req.timedout) next()
+  }
 
 module.exports = app;
