@@ -6,11 +6,11 @@ var timeout = require('connect-timeout')
 
   authRouter
     .post('/login', jsonBodyParser, (req, res, next) => {
-      // savePost(req.body, function (err, id) {
-      //   if (err) return next(err)
-      //   if (req.timedout) return
-      //   res.send('saved as id ' + id)
-      // })
+      savePost(req.body, function (err, id) {
+        if (err) return next(err)
+        if (req.timedout) return
+        res.send('saved as id ' + id)
+      })
       
       const { username, password } = req.body;
       const loginUser = { username, password };
