@@ -16,7 +16,9 @@ var timeout = require('connect-timeout')
 app.use(timeout('5s'))
 app.use(cookieParser());
 app.use(haltOnTimedout)
-app.use(cors())
+
+app.use(cors({origin: /\.herokuapp\.com$/}));
+
 app.use(haltOnTimedout)
 
 app.get('/', (req, res) => {
