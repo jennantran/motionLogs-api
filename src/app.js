@@ -12,7 +12,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 var timeout = require('connect-timeout')
 
-app.use(cors({origin: 'https://motionlogs-app.vercel.app/logs'}));
+app.use(cors({origin: 'https://motionlogs-app.vercel.app'}));
 
 app.use(timeout('5s'))
 app.use(cookieParser());
