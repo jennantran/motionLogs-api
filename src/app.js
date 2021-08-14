@@ -12,12 +12,12 @@ const app = express();
 const cookieParser = require('cookie-parser');
 var timeout = require('connect-timeout')
 
+app.use(cors({origin: 'https://motionlogs-app.vercel.app/logs'}));
 
 app.use(timeout('5s'))
 app.use(cookieParser());
 app.use(haltOnTimedout)
 
-app.use(cors({origin: ['/.*https://sheltered-fortress-79630.herokuapp.com*/']}));
 
 app.use(haltOnTimedout)
 
