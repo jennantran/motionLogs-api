@@ -17,7 +17,7 @@ app.use(timeout('5s'))
 app.use(cookieParser());
 app.use(haltOnTimedout)
 
-app.use(cors({origin: /\.herokuapp\.com$/}));
+app.use(cors({origin: ['/.*https://sheltered-fortress-79630.herokuapp.com*/']}));
 
 app.use(haltOnTimedout)
 
@@ -34,7 +34,7 @@ const morganOption = (NODE_ENV === 'production')
 // })
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "https://sheltered-fortress-79630.herokuapp.com");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
